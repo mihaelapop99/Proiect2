@@ -56,5 +56,16 @@ namespace Proiect2.Controllers
         {
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
+
+
+
+
+        //lab7
+        public IActionResult Chat()
+        {
+            return View();
+        }
+
+
     }
 }
