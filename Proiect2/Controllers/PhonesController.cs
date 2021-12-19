@@ -173,6 +173,8 @@ namespace Proiect2.Controllers
             return View(studentToUpdate);
         }
 
+
+
         // GET: Phones/Delete/5
         public async Task<IActionResult> Delete(int? id, bool? saveChangesError = false)
         {
