@@ -6,6 +6,8 @@ using Microsoft.Extensions.Hosting;
 using Proiect2.Data;
 using Microsoft.EntityFrameworkCore;
 using Proiect2.Hubs;
+using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace Proiect2
 {
@@ -28,6 +30,27 @@ namespace Proiect2
             //lab 7
             services.AddSignalR();
 
+
+
+            //............................................................
+            //lab8 te,a -- cod luat din cursul 8  ----configurare Lockout
+            services.Configure<IdentityOptions>(options => {
+                //  Lockout settings.
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+                options.Lockout.MaxFailedAccessAttempts = 5;  //maxim 5 incercari de autentificare
+                options.Lockout.AllowedForNewUsers = true;
+
+                //  Password settings.
+                options.Password.RequireDigit = true;
+                options.Password.RequireLowercase = true;
+                options.Password.RequireNonAlphanumeric = true;
+                options.Password.RequireUppercase = true;
+                options.Password.RequiredLength = 10;
+                options.Password.RequiredUniqueChars = 1;
+            });
+
+            //..................................................
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,7 +71,22 @@ namespace Proiect2
 
             app.UseRouting();
 
+
+            //lab 8
+            app.UseAuthentication();
+
+            /* services.Configure<IdentityOptions>(options =>
+             {
+                 // Default Lockout settings.
+                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                 options.Lockout.MaxFailedAccessAttempts = 5;
+                 options.Lockout.AllowedForNewUsers = true;
+             });*/
+
+
+            //
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {
@@ -56,9 +94,26 @@ namespace Proiect2
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                    //lab7
-                    endpoints.MapHub<ChatHub>("/chathub");
+                //lab7
+                endpoints.MapHub<ChatHub>("/chathub");
+
+                //lab8
+                endpoints.MapRazorPages();
             });
+
+
+
+
+
+
+
+
         }
+
+
+        
+
+
+
     }
 }
