@@ -30,13 +30,20 @@ namespace Proiect2
             //lab 7
             services.AddSignalR();
 
+            //lab 9
+            //services.AddRazorPages();
 
+
+            //PCT 3 PROIECT
+            //realizarea a doua configurari diferite de setarile default
+            //
+            //
 
             //............................................................
             //lab8 te,a -- cod luat din cursul 8  ----configurare Lockout
             services.Configure<IdentityOptions>(options => {
                 //  Lockout settings.
-                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15); // ACCOUNT BLOCAT PT 15 MIN
                 options.Lockout.MaxFailedAccessAttempts = 5;  //maxim 5 incercari de autentificare
                 options.Lockout.AllowedForNewUsers = true;
 
@@ -50,6 +57,37 @@ namespace Proiect2
             });
 
             //..................................................
+
+
+            //lab9
+            services.AddAuthorization(opts => {
+                opts.AddPolicy("OnlySales", policy => {
+                    policy.RequireClaim("Department", "Sales");
+                });
+            });
+
+
+            //lab 9
+            /*In sectiunea Customers accesul va fi autorizat doar pentru utilizatorii cu rol de manager si care fac
+            parte din departamentul Sales. Vom crea astfel o noua politica cu denumire SalesManager in clasa
+            Startup.cs si vom configura aplicatia sa afiseze pagina AccesDenied existenta in libraria Identity in
+            cazul in care accesul este restrictionat:*/
+
+            /*services.AddAuthorization(opts => {
+                opts.AddPolicy("SalesManager", policy => {
+                    policy.RequireRole("Manager");
+                    policy.RequireClaim("Department", "Sales");
+                });
+            });
+            services.ConfigureApplicationCookie(opts =>
+            {
+                opts.AccessDeniedPath = "/Identity/Account/AccessDenied";
+
+            });*/
+
+
+
+
 
         }
 
@@ -111,8 +149,8 @@ namespace Proiect2
         }
 
 
-        
 
+        //services.AddScoped(typeof(IrepositoryTab<>), typeof(RepositoryTab<>));
 
 
     }

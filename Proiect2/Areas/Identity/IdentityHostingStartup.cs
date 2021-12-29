@@ -21,6 +21,7 @@ namespace Proiect2.Areas.Identity
 
                 services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                     .AddEntityFrameworkStores<IdentityContext>();
+                
             });
         }
     }

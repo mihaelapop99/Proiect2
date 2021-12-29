@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Proiect2.Data;
 using Proiect2.Models;
+///using Microsoft.AspNetCore.Authorization;
 
 namespace Proiect2.Controllers
 {
+    //[Authorize(Roles = "Employee")]
     public class PhonesController : Controller
     {
         private readonly PhoneContext _context;
@@ -20,6 +22,7 @@ namespace Proiect2.Controllers
         }
 
         // GET: Phones
+       // [AllowAnonymous]
         public async Task<IActionResult> Index(
                   string sortOrder,
                   string currentFilter,
@@ -66,6 +69,7 @@ namespace Proiect2.Controllers
         }
 
         // GET: Phones/Details/5
+        //[AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
