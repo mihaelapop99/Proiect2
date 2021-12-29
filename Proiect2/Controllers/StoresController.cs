@@ -13,7 +13,7 @@ using Proiect2.Models.PhoneViewModels;
 
 namespace Proiect2.Controllers
 {
-    [Authorize(Policy = "OnlySales")]
+    [Authorize(Policy = "OnlyManagers")]
     public class StoresController : Controller
     {
         private readonly PhoneContext _context;
@@ -24,6 +24,8 @@ namespace Proiect2.Controllers
         }
 
         // GET: Stores
+        [AllowAnonymous]
+
         public async Task<IActionResult> Index(int? id, int? phoneID)
         {
             var viewModel = new StoreIndexData();
@@ -59,6 +61,8 @@ namespace Proiect2.Controllers
 
 
         // GET: Stores/Details/5
+        [AllowAnonymous]  // sa poata fi vazute magazinele de toti utilizatorii
+
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)

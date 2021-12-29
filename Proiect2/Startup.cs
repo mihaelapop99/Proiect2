@@ -31,7 +31,7 @@ namespace Proiect2
             services.AddSignalR();
 
             //lab 9
-            //services.AddRazorPages();
+            services.AddRazorPages();
 
 
             //PCT 3 PROIECT
@@ -60,13 +60,17 @@ namespace Proiect2
 
 
             //lab9
+            //sectiunea de magazine va putea fi vizualizata doar de catre persoanele care au rol de manager
             services.AddAuthorization(opts => {
-                opts.AddPolicy("OnlySales", policy => {
-                    policy.RequireClaim("Department", "Sales");
+                opts.AddPolicy("OnlyManagers", policy => {
+                    policy.RequireRole("Manager");
                 });
             });
+            services.ConfigureApplicationCookie(opts =>
+            {
+                opts.AccessDeniedPath = "/Identity/Account/AccessDenied";
 
-
+            });
             //lab 9
             /*In sectiunea Customers accesul va fi autorizat doar pentru utilizatorii cu rol de manager si care fac
             parte din departamentul Sales. Vom crea astfel o noua politica cu denumire SalesManager in clasa

@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Proiect2.Data;
 using Proiect2.Models;
-///using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Proiect2.Controllers
 {
-    //[Authorize(Roles = "Employee")]
+    [Authorize(Roles = "Employee")] // telefoanele vor putea fi editate doar de catre employee
     public class PhonesController : Controller
     {
         private readonly PhoneContext _context;
@@ -22,7 +22,8 @@ namespace Proiect2.Controllers
         }
 
         // GET: Phones
-       // [AllowAnonymous]
+        // detaliile pot fi vazute de oricine este inregistrat fara sa fie necesar un rol
+        [AllowAnonymous]
         public async Task<IActionResult> Index(
                   string sortOrder,
                   string currentFilter,
@@ -69,7 +70,8 @@ namespace Proiect2.Controllers
         }
 
         // GET: Phones/Details/5
-        //[AllowAnonymous]
+        // detaliile pot fi vazute de oricine este inregistrat fara sa fie necesar un rol
+        [AllowAnonymous]
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
