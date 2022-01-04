@@ -9,6 +9,7 @@ using Proiect2.Hubs;
 using Microsoft.AspNetCore.Identity;
 using System;
 
+
 namespace Proiect2
 {
     public class Startup
@@ -30,7 +31,7 @@ namespace Proiect2
             //lab 7
             services.AddSignalR();
 
-            //lab 9
+            //lab 9 pct 6
             services.AddRazorPages();
 
 
@@ -59,9 +60,10 @@ namespace Proiect2
             //..................................................
 
 
-            //lab9
+            //lab9 pct 16
+
             //sectiunea de magazine va putea fi vizualizata doar de catre persoanele care au rol de manager
-            services.AddAuthorization(opts => {
+           services.AddAuthorization(opts => {
                 opts.AddPolicy("OnlyManagers", policy => {
                     policy.RequireRole("Manager");
                 });
@@ -71,6 +73,9 @@ namespace Proiect2
                 opts.AccessDeniedPath = "/Identity/Account/AccessDenied";
 
             });
+  
+
+
             //lab 9
             /*In sectiunea Customers accesul va fi autorizat doar pentru utilizatorii cu rol de manager si care fac
             parte din departamentul Sales. Vom crea astfel o noua politica cu denumire SalesManager in clasa
@@ -91,7 +96,7 @@ namespace Proiect2
 
 
 
-
+            
 
         }
 
@@ -131,16 +136,18 @@ namespace Proiect2
 
 
             app.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllerRoute(
-                    name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+             {
+                 endpoints.MapControllerRoute(
+                     name: "default",
+                     pattern: "{controller=Home}/{action=Index}/{id?}");
 
-                //lab7
-                endpoints.MapHub<ChatHub>("/chathub");
+                 //lab7
+                 endpoints.MapHub<ChatHub>("/chathub");
 
-                //lab8
-                endpoints.MapRazorPages();
+                 //lab8
+                 endpoints.MapRazorPages();  
+
+            
             });
 
 

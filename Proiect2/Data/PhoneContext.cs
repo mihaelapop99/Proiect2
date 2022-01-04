@@ -31,5 +31,10 @@ namespace Proiect2.Data
             modelBuilder.Entity<PhonesStore>()
             .HasKey(c => new { c.PhoneID, c.StoreID });//configureaza cheiaprimara compusa
         }
+
+        public void Add(Store store)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

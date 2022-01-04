@@ -12,6 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace Proiect2.Controllers
 {
     [Authorize(Roles = "Employee")] // telefoanele vor putea fi editate doar de catre employee
+    
     public class PhonesController : Controller
     {
         private readonly PhoneContext _context;

@@ -12,6 +12,7 @@ namespace Proiect2.Models.PhoneViewModels
         [DataType(DataType.Date)]
         public DateTime? OrderDate { get; set; }
         public int PhoneCount { get; set; }
+        public int Price { get; set; }
 
         //public string WorkerId { get; set; }
 
