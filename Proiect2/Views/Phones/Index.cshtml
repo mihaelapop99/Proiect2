@@ -4,17 +4,17 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Telefoane disponibile</h1>
 
 <p>
-    <a asp-action="Create">Create New</a>
+    <a asp-action="Create">Adauga un telefon nou</a>
 </p>
 
 
 <form asp-action="Index" method="get">
     <div class="form-actions no-color">
         <p>
-            Find by title: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
+            Cauta dupa titlu: <input type="text" name="SearchString" value="@ViewData["CurrentFilter"]" />
             <input type="submit" value="Search" class="btn btn-default" /> |
             <a asp-action="Index">Back to Full List</a>
         </p>

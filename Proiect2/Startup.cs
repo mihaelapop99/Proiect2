@@ -21,7 +21,7 @@ namespace Proiect2
 
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
@@ -41,28 +41,37 @@ namespace Proiect2
             //
 
             //............................................................
-            //lab8 te,a -- cod luat din cursul 8  ----configurare Lockout
+            
             services.Configure<IdentityOptions>(options => {
                 //  Lockout settings.
                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15); // ACCOUNT BLOCAT PT 15 MIN
                 options.Lockout.MaxFailedAccessAttempts = 5;  //maxim 5 incercari de autentificare
-                options.Lockout.AllowedForNewUsers = true;
+                options.Lockout.AllowedForNewUsers = true;  // orice utiilizator nou poate fi blocat
 
                 //  Password settings.
-                options.Password.RequireDigit = true;
-                options.Password.RequireLowercase = true;
-                options.Password.RequireNonAlphanumeric = true;
-                options.Password.RequireUppercase = true;
-                options.Password.RequiredLength = 10;
-                options.Password.RequiredUniqueChars = 1;
+                options.Password.RequireDigit = true;  //parola trebuie sa contina obligatoriu numere de la 0-9
+                options.Password.RequireLowercase = true;  //trebuie sa contina litere mici
+                options.Password.RequireNonAlphanumeric = true; //trebuie sa contina un caracter special
+                options.Password.RequireUppercase = true; //trebuie sa contina litere mari
+                options.Password.RequiredLength = 10;  //parola trebuie sa aiba minim 10 caractere
+                options.Password.RequiredUniqueChars = 3;  //trebuie sa foloseeasca cel putin 3 caractere diferite
+
+                // User settings.
+                options.User.AllowedUserNameCharacters ="abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-._@+";
+                //options.User.RequireUniqueEmail = true;
+
+               //options.SignIn.RequireConfirmedEmail = true;  -- default
             });
 
             //..................................................
 
 
+
+            //  AUTORIZARE
+
             //lab9 pct 16
 
-            //sectiunea de magazine va putea fi vizualizata doar de catre persoanele care au rol de manager
+            //sectiunea de magazine va putea fi editata doar de catre persoanele care au rol de manager
            services.AddAuthorization(opts => {
                 opts.AddPolicy("OnlyManagers", policy => {
                     policy.RequireRole("Manager");
@@ -73,18 +82,10 @@ namespace Proiect2
                 opts.AccessDeniedPath = "/Identity/Account/AccessDenied";
 
             });
-  
 
-
-            //lab 9
-            /*In sectiunea Customers accesul va fi autorizat doar pentru utilizatorii cu rol de manager si care fac
-            parte din departamentul Sales. Vom crea astfel o noua politica cu denumire SalesManager in clasa
-            Startup.cs si vom configura aplicatia sa afiseze pagina AccesDenied existenta in libraria Identity in
-            cazul in care accesul este restrictionat:*/
-
-            /*services.AddAuthorization(opts => {
-                opts.AddPolicy("SalesManager", policy => {
-                    policy.RequireRole("Manager");
+            // telefoanele pot fi editate doar de catre personalul din dep Sales care au su rol de employee (vezi PhonesController.cs)
+            services.AddAuthorization(opts => {
+                opts.AddPolicy("OnlySales", policy => {
                     policy.RequireClaim("Department", "Sales");
                 });
             });
@@ -92,11 +93,13 @@ namespace Proiect2
             {
                 opts.AccessDeniedPath = "/Identity/Account/AccessDenied";
 
-            });*/
-
-
+            });
 
             
+
+
+
+
 
         }
 
@@ -110,7 +113,7 @@ namespace Proiect2
             else
             {
                 app.UseExceptionHandler("/Home/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
+                // by default avem 30 zile
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
@@ -119,16 +122,10 @@ namespace Proiect2
             app.UseRouting();
 
 
-            //lab 8
+            
             app.UseAuthentication();
 
-            /* services.Configure<IdentityOptions>(options =>
-             {
-                 // Default Lockout settings.
-                 options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                 options.Lockout.MaxFailedAccessAttempts = 5;
-                 options.Lockout.AllowedForNewUsers = true;
-             });*/
+           
 
 
             //
@@ -161,7 +158,7 @@ namespace Proiect2
 
 
 
-        //services.AddScoped(typeof(IrepositoryTab<>), typeof(RepositoryTab<>));
+        
 
 
     }

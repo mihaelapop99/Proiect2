@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="~/css/site.css" />
 </head>
 <body>
-    <header>
+        <header class="navbar navbar-light" style="background-color: #e3f2fd;">
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
                 <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index"> Mihaela's Phones Shop </a>
@@ -17,44 +17,48 @@
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                   
-                    
-                    
-                    <partial name="_LoginPartial" />
-                    
-                    
+
+
+
+
+
+
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-primary" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
                         </li>
 
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Phones" asp-action="Index">Phones</a>
+                            <a class="nav-link text-primary" asp-area="" asp-controller="Phones" asp-action="Index">Phones</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Stores" asp-action="Index">Stores</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Statistics">Statistics</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-
-
-
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Chat">Chat</a>
+                            <a class="nav-link text-primary" asp-area="" asp-controller="Stores" asp-action="Index">Stores</a>
                         </li>
 
 
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Workers" asp-action="Index">Workers</a>
+                            <a class="nav-link text-primary" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-primary" asp-area="" asp-controller="Home" asp-action="Statistics">Statistics</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-primary" asp-area="" asp-controller="Home" asp-action="Chat">Chat</a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a class="nav-link text-primary" asp-area="" asp-controller="Workers" asp-action="Index">Workers</a>
                         </li>
 
                     </ul>
+
+                    <partial name="_LoginPartial" />
+
+
                 </div>
             </div>
         </nav>
@@ -67,7 +71,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - Proiect2 - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2022 - Mihaela's Phones Shop - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

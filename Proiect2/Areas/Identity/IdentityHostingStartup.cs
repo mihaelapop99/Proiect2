@@ -74,3 +74,12 @@ namespace Proiect2.Areas.Identity
         }
     }
 }
+
+/*
+ * ASP.NET Core Identity:
+            • API care ofera functionalitati de tip login
+            • Gestioneaza utilizatori, parole, roluri, confirmare email etc.
+            • Configurat sa utilizeze o baza de date SQL Server pentru a stoca useri, parole si date de profil
+            • Sub forma unei librarii de clase Razor
+ 
+ */
